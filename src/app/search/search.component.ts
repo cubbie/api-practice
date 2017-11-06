@@ -1,15 +1,39 @@
 import { Component, OnInit } from '@angular/core';
+import { WeatherService } from '../weather.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  styleUrls: ['./search.component.css'],
+  providers: [WeatherService]
 })
 export class SearchComponent implements OnInit {
-
-  constructor() { }
+  searchForm: FormGroup;
+  constructor(private weatherService: WeatherService) {}
 
   ngOnInit() {
+    this.searchForm = new FormGroup({
+      'city': new FormControl(null),
+      'lon': new FormControl(null),
+      'lat': new FormControl(null)
+    });
+  }
+  getCity(city) {
+    this.weatherService.getWeatherCity(this.searchForm.value.city).subscribe(
+      (response) => console.log(response),
+      (error) => console.error
+    );
+  }
+  getLonLat(lon, lat) {
+    this.weatherService.getWeatherLonLat(this.searchForm.value.lon, this.searchForm.value.lat).subscribe(
+      (response) => console.log(response),
+      (error) => console.error
+    );
+  }
+
+  onSubmit(){
+    console.log(this.searchForm)
   }
 
 }
