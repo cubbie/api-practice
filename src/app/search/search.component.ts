@@ -32,8 +32,4 @@ export class SearchComponent implements OnInit {
     );
   }
 
-  onSubmit(){
-    console.log(this.searchForm)
-  }
-
 }
