@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../weather.service';
+import { LocationService } from '../location.service'
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -9,8 +10,12 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class SearchComponent implements OnInit {
   searchForm: FormGroup;
-  setPosition: any;
-  constructor(private weatherService: WeatherService) {}
+  position: any;
+  lon: any;
+  lat: any;
+
+  constructor(private weatherService: WeatherService,
+              private locationService: LocationService) {}
 
   ngOnInit() {
     this.searchForm = new FormGroup({
@@ -18,10 +23,16 @@ export class SearchComponent implements OnInit {
       'lon': new FormControl(null),
       'lat': new FormControl(null)
     });
-    if(window.navigator.geolocation){
-      window.navigator.geolocation.getCurrentPosition(this.setPosition.bind(this)),
-      console.log(this.setPosition)
-    };
+    this.locationService.getLocation().subscribe(
+      (position: {}) => {
+        this.position = position;
+        this.lon = this.position.coords.longitude;
+        this.lat = this.position.coords.latitude;
+        console.log(this.lon +', '+this.lat);
+      },
+      (error: any) => console.log('error')
+    );
+
   }
   getCity(city) {
     this.weatherService.getCityWeather(this.searchForm.value.city).subscribe(

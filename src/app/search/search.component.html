@@ -11,16 +11,18 @@
       (click)='getCity()'
       >Search</button>
   </div>
-    <h3 class="or">Or</h3>
+    <h3 class="or">Or view map of your location</h3>
   <div class="form-row">
     <input type="text"
       class= "form-control col"
       placeholder="Longitutde"
+      value="{{lon}}"
       formControlName="lon">
     <br />
     <input type="text"
       class= "form-control col"
       placeholder="Latitude"
+      value="{{lat}}"
       formControlName="lat">
     <br />
     <button class="btn btn-primary"
