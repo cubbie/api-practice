@@ -9,6 +9,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class SearchComponent implements OnInit {
   searchForm: FormGroup;
+  setPosition: any;
   constructor(private weatherService: WeatherService) {}
 
   ngOnInit() {
@@ -17,6 +18,10 @@ export class SearchComponent implements OnInit {
       'lon': new FormControl(null),
       'lat': new FormControl(null)
     });
+    if(window.navigator.geolocation){
+      window.navigator.geolocation.getCurrentPosition(this.setPosition.bind(this)),
+      console.log(this.setPosition)
+    };
   }
   getCity(city) {
     this.weatherService.getCityWeather(this.searchForm.value.city).subscribe(
