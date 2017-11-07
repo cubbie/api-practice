@@ -1,0 +1,6 @@
+<div class="weather">
+  <ul class="list-group"
+    *ngFor="let item of weather.list | slice:0:5; let i=index">
+    <li class="list-group-item">{{ item.dt }}</li>
+  </ul>
+</div>

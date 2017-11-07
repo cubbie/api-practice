@@ -6,7 +6,6 @@ import { FormGroup, FormControl } from '@angular/forms';
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
-  providers: [WeatherService]
 })
 export class SearchComponent implements OnInit {
   searchForm: FormGroup;
@@ -20,10 +19,14 @@ export class SearchComponent implements OnInit {
     });
   }
   getCity(city) {
-    this.weatherService.getWeatherCity(this.searchForm.value.city).subscribe(
-      (response) => console.log(response),
+    this.weatherService.getCityWeather(this.searchForm.value.city).subscribe(
+      (weather: {}) => this.weatherService.weatherUpdated.emit(weather),
       (error) => console.error
     );
+    // this.weatherService.getCityForcast(this.searchForm.value.city).subscribe(
+    //   (response) => console.log(response),
+    //   (error) => console.error
+    // );
   }
   getLonLat(lon, lat) {
     this.weatherService.getWeatherLonLat(this.searchForm.value.lon, this.searchForm.value.lat).subscribe(
