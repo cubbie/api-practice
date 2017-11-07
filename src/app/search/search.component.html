@@ -1,35 +1,31 @@
-<div class="row">
-  <div class="col-5 offset-1">
-    <form [formGroup]="searchForm" >
-    <h2>Search by:</h2>
-    <div class="form-row">
-      <input type="text"
-        class= "form-control col"
-        placeholder="City"
-        formControlName="city">
-        <br />
-      <button class="btn btn-primary"
-        type="button"
-        (click)='getCity()'
-        >Search</button>
-    </div>
-      <h3 class="or">Or</h3>
-    <div class="form-row">
-      <input type="text"
-        class= "form-control col"
-        placeholder="Longitutde"
-        formControlName="lon">
+<form [formGroup]="searchForm" >
+  <h3>Search by:</h3>
+  <div class="form-row">
+    <input type="text"
+      class= "form-control col"
+      placeholder="City"
+      formControlName="city">
       <br />
-      <input type="text"
-        class= "form-control col"
-        placeholder="Latitude"
-        formControlName="lat">
-      <br />
-      <button class="btn btn-primary"
-        type="button"
-        (ngSubmit)='getLonLat()'
-        >Search</button>
-    </div>
-    </form>
+    <button class="btn btn-primary"
+      type="button"
+      (click)='getCity()'
+      >Search</button>
   </div>
-</div>
+    <h3 class="or">Or</h3>
+  <div class="form-row">
+    <input type="text"
+      class= "form-control col"
+      placeholder="Longitutde"
+      formControlName="lon">
+    <br />
+    <input type="text"
+      class= "form-control col"
+      placeholder="Latitude"
+      formControlName="lat">
+    <br />
+    <button class="btn btn-primary"
+      type="button"
+      (ngSubmit)='getLonLat()'
+      >Search</button>
+  </div>
+</form>
