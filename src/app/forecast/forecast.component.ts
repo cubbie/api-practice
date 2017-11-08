@@ -7,15 +7,16 @@ import { WeatherService } from '../weather.service';
   styleUrls: ['./forecast.component.css'],
 })
 export class ForecastComponent implements OnInit {
-
-public weather: {list: {}};
+public active: boolean = false;
+public weather: {list: any};
 
   constructor(private weatherService: WeatherService) {}
 
   ngOnInit() {
     this.weatherService.weatherUpdated.subscribe(
-      (weather: {list: {}}) => {
-        this.weather = weather
+      (weather: {list: any}) => {
+        this.weather = weather;
+        this.active = true;
       },
       (error) => console.error
     );

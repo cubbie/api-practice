@@ -13,16 +13,18 @@ import { Http } from '@angular/http';
 export class AppComponent implements OnChanges {
   position: any;
   lon: number = 43.8047818;
-  lat: number = -79.8745539;
+  lat: number = 79.8745539;
+  title = 'Weather';
   constructor(private weatherService: WeatherService,
               private locationService: LocationService) {}
-  title = 'Weather';
+              
   ngOnChanges(){
     this.locationService.getLocation().subscribe(
       (position: {}) => {
         this.position = position;
-        this.lon = this.position.coords.longitude;
-        this.lat = this.position.coords.latitude;
+        // this.lon = this.position.coords.longitude;
+        // this.lat = this.position.coords.latitude;
+        console.log(this.position)
       },
       (error: any) => console.log('error')
     );

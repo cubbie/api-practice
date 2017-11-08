@@ -1,7 +1,14 @@
-<div class="row"
-  *ngIf="!weather === true">
+<div class="row">
     <ul class="list-group"
-      *ngFor="let item of weather | slice:0:5; let i=index">
-      <li class="list-group-item">{{ item.list.dt }}</li>
+      *ngFor="let item of weather.list | slice:0:5; let i=index">
+      <li class="list-group-item">
+        <div class="">
+          <p>{{ item.dt }}</p>
+          <p>Current: {{ item.main.temp }}</p>
+          <p>Low: {{ item.main.temp_min }}</p>
+          <p>High: {{ item.main.temp_max }}</p>
+          <p>Pressure: {{ item.main.pressure }}</p>
+        </div>
+      </li>
     </ul>
 </div>
