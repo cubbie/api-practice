@@ -30,7 +30,8 @@ export class LocationService {
 								observer.error(GEOLOCATION_ERRORS['errors.location.timeout']);
 								break;
 						}
-					});
+					},
+        {timeout:10000});
 			}
 			else {
 				observer.error(GEOLOCATION_ERRORS['errors.location.unsupportedBrowser']);
