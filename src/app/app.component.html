@@ -2,7 +2,11 @@
 <div class="container-fluid">
   <div class="row">
     <app-search class="col"></app-search>
-    <app-map class="col"></app-map>
+    <div class="col">
+      <agm-map [latitude]="lat" [longitude]="lng">
+        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+      </agm-map>  
+    </div>
   </div>
   <hr>
   <app-forecast></app-forecast>

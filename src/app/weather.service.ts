@@ -19,9 +19,6 @@ export class WeatherService {
       }
     );
   }
-  // getCityForcast(city){
-  //   this.http.get('https://api.openweathermap.org/data/2.5/forecast/daily?q='+city+'&mode=json&units=metric&cnt=5&APPID='+this.apikey)
-  // }
   getWeatherLonLat(lat, lon) {
     return this.http.get('http://api.openweathermap.org/data/2.5/find?lat=' + lat +'&lon='+ lon +'&cnt=50'+'&APPID='+this.apikey)
     .map(

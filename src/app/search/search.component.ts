@@ -11,8 +11,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class SearchComponent implements OnInit {
   searchForm: FormGroup;
   position: any;
-  lon: any;
-  lat: any;
+  lon: number;
+  lat: number;
 
   constructor(private weatherService: WeatherService,
               private locationService: LocationService) {}
@@ -28,7 +28,6 @@ export class SearchComponent implements OnInit {
         this.position = position;
         this.lon = this.position.coords.longitude;
         this.lat = this.position.coords.latitude;
-        console.log(this.lon +', '+this.lat);
       },
       (error: any) => console.log('error')
     );

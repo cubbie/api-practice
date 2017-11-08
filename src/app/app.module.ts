@@ -9,7 +9,8 @@ import { LocationService } from './location.service'
 import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './search/search.component';
 import { ForecastComponent } from './forecast/forecast.component';
-import { MapComponent } from './map/map.component';
+
+import { AgmCoreModule } from '@agm/core';
 
 
 @NgModule({
@@ -18,12 +19,14 @@ import { MapComponent } from './map/map.component';
     HeaderComponent,
     SearchComponent,
     ForecastComponent,
-    MapComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBgWlnbkMDFn1mpOF8lJTnYC5IRUEaaW88'
+    })
   ],
   providers: [WeatherService,
   LocationService],
