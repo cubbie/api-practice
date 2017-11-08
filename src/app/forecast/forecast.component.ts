@@ -15,8 +15,7 @@ public weather: {list: {}};
   ngOnInit() {
     this.weatherService.weatherUpdated.subscribe(
       (weather: {list: {}}) => {
-        this.weather = weather,
-        console.log(this.weather.list)
+        this.weather = weather
       },
       (error) => console.error
     );
