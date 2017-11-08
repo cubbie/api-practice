@@ -10,6 +10,15 @@ export class WeatherService {
   public weather: {};
   weatherUpdated = new EventEmitter<{}>()
 
+  getStartWeather(lat, lon) {
+    return this.http.get('https://api.openweathermap.org/data/2.5/forecast?lat='+lat+'&lon='+lon+'&APPID='+this.apikey)
+    .map(
+      (response: Response) => {
+        this.weather = response.json();
+        return this.weather;
+      }
+    );
+  }
   getCityWeather(city) {
     return this.http.get('https://api.openweathermap.org/data/2.5/forecast?q='+city+'&mode=JSON&APPID='+this.apikey)
     .map(
