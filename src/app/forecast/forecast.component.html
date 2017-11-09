@@ -5,10 +5,11 @@
       <li class="list-group-item">
         <div class="">
           <p>{{ convertDate(item.dt) }}</p>
-          <p>Current: {{ item.main.temp }}</p>
-          <p>Low: {{ item.main.temp_min }}</p>
-          <p>High: {{ item.main.temp_max }}</p>
-          <p>Pressure: {{ item.main.pressure }}</p>
+          <p>{{ convertTime(item.dt) }}</p>
+          <p>Current: {{ item.main.temp }}°C</p>
+          <p>Low: {{ item.main.temp_min }}°C</p>
+          <p>High: {{ item.main.temp_max }}°C</p>
+          <p>Pressure: {{ round(item.main.pressure) }} kPa</p>
         </div>
       </li>
     </ul>

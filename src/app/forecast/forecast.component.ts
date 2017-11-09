@@ -22,7 +22,12 @@ public weather: {list: any};
     );
   }
   convertDate(time){
-    var date = new Date(time).toUTCString();
-    return date
+    return new Date(time*1000).toString().slice(0, 15);
+  }
+  convertTime(time){
+    return new Date(time*1000).toString().slice(16, 21);
+  }
+  round(number) {
+    return Math.round( (number/10) * 10 ) / 10;
   }
 }
