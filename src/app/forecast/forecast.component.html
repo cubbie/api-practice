@@ -4,12 +4,14 @@
       *ngFor="let item of weather.list | slice:0:5; let i=index">
       <li class="list-group-item">
         <div class="">
-          <p>{{ convertDate(item.dt) }}</p>
-          <p>{{ convertTime(item.dt) }}</p>
-          <p>Current: {{ item.main.temp }}°C</p>
-          <p>Low: {{ item.main.temp_min }}°C</p>
-          <p>High: {{ item.main.temp_max }}°C</p>
-          <p>Pressure: {{ round(item.main.pressure) }} kPa</p>
+          <p class="date-time">{{ convertDate(item.dt) }}<br/>
+            {{ convertTime(item.dt) }}</p>
+          <p>Icon: {{ item.weather.icon }}<br/>
+          Conditions: {{ item.weather[0].main }}<br/>
+          Expected: {{ item.main.temp }}°C<br/>
+          Humidity: {{ item.main.humidity }}%<br/>
+          Pressure: {{ round(item.main.pressure) }} kPa<br/>
+          Wind: {{ item.wind.speed }} m/s {{ windDirection(item.wind.deg) }}<br/>
         </div>
       </li>
     </ul>
