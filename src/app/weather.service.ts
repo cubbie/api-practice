@@ -11,7 +11,7 @@ export class WeatherService {
   weatherUpdated = new EventEmitter<{}>()
 
   getStartWeather(lat, lon) {
-    return this.http.get('https://api.openweathermap.org/data/2.5/forecast?lat='+lat+'&lon='+lon+'&APPID='+this.apikey)
+    return this.http.get('https://api.openweathermap.org/data/2.5/forecast?lat='+lat+'&lon='+lon+'&units=metric&APPID='+this.apikey)
     .map(
       (response: Response) => {
         this.weather = response.json();
@@ -20,7 +20,7 @@ export class WeatherService {
     );
   }
   getCityWeather(city) {
-    return this.http.get('https://api.openweathermap.org/data/2.5/forecast?q='+city+'&mode=JSON&APPID='+this.apikey)
+    return this.http.get('https://api.openweathermap.org/data/2.5/forecast?q='+city+'&mode=JSON&units=metric&APPID='+this.apikey)
     .map(
       (response: Response) => {
         this.weather = response.json();
@@ -29,7 +29,7 @@ export class WeatherService {
     );
   }
   getWeatherLonLat(lat, lon) {
-    return this.http.get('http://api.openweathermap.org/data/2.5/find?lat=' + lat +'&lon='+ lon +'&cnt=50'+'&APPID='+this.apikey)
+    return this.http.get('http://api.openweathermap.org/data/2.5/find?lat=' + lat +'&lon='+ lon +'&cnt=50&units=metric&APPID='+this.apikey)
     .map(
       (response: Response) => {
         this.weather = response.json();

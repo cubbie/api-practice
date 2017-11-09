@@ -7,7 +7,7 @@ import { WeatherService } from '../weather.service';
   styleUrls: ['./forecast.component.css'],
 })
 export class ForecastComponent implements OnInit {
-public active: boolean = false;
+public hidden: boolean = false;
 public weather: {list: any};
 
   constructor(private weatherService: WeatherService) {}
@@ -16,10 +16,13 @@ public weather: {list: any};
     this.weatherService.weatherUpdated.subscribe(
       (weather: {list: any}) => {
         this.weather = weather;
-        this.active = true;
+        console.log(this.weather)
       },
       (error) => console.error
     );
   }
-
+  convertDate(time){
+    var date = new Date(time).toUTCString();
+    return date
+  }
 }

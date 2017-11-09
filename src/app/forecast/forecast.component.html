@@ -1,9 +1,10 @@
-<div class="row">
+<div class="row"
+  *ngIf="!hidden === true">
     <ul class="list-group"
       *ngFor="let item of weather.list | slice:0:5; let i=index">
       <li class="list-group-item">
         <div class="">
-          <p>{{ item.dt }}</p>
+          <p>{{ convertDate(item.dt) }}</p>
           <p>Current: {{ item.main.temp }}</p>
           <p>Low: {{ item.main.temp_min }}</p>
           <p>High: {{ item.main.temp_max }}</p>
