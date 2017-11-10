@@ -45,6 +45,7 @@ export class SearchComponent implements OnInit {
       (weather: {}) => console.log(weather),
       (error) => console.error
     );
+    console.log(this.searchForm.value);
     this.lon = this.searchForm.value.lon;
     this.lat = this.searchForm.value.lat;
     this.search = String(this.searchForm.value.lon+", "+this.searchForm.value.lat)
