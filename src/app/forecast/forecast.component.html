@@ -1,18 +1,43 @@
-<div class="row"
-  *ngIf="!hidden === true">
-    <ul class="list-group"
-      *ngFor="let item of weather.list | slice:0:5; let i=index">
-      <li class="list-group-item">
-        <div class="">
-          <p class="date-time">{{ convertDate(item.dt) }}<br/>
-            {{ convertTime(item.dt) }}</p>
-          <p>Icon: {{ item.weather.icon }}<br/>
-          Conditions: {{ item.weather[0].main }}<br/>
-          Expected: {{ item.main.temp }}°C<br/>
-          Humidity: {{ item.main.humidity }}%<br/>
-          Pressure: {{ round(item.main.pressure) }} kPa<br/>
-          Wind: {{ item.wind.speed }} m/s {{ windDirection(item.wind.deg) }}<br/>
-        </div>
-      </li>
-    </ul>
+<div class="results">
+  <div class="row"
+    *ngIf="!hidden === true">
+    <div class="current">
+      <h3 class="current-title">Current</h3>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <p class="date-time">{{ convertDate(city.dt) }}<br/>
+            {{ convertTime(city.dt) }}</p>
+            <i class="owi" [class]="owi-city.weather[0].icon" ></i><br/>
+            <p>{{city.weather[0].icon}}</p>
+            <p>Conditions: {{ city.weather[0].main }}<br/>
+              Currently: {{ city.main.temp }}°C<br/>
+              Humidity: {{ city.main.humidity }}%<br/>
+              Pressure: {{ round(city.main.pressure) }} kPa<br/>
+              Wind: {{ city.wind.speed }} m/s {{ windDirection(city.wind.deg) }}</p>
+        </li>
+      </ul>
+    </div>
+    <div class="hr"></div>
+    <div class="forecast col">
+      <h3 class="forecast-title">Forecast</h3>
+      <div class="row">
+        <ul class="list-group"
+        *ngFor="let item of weather.list | slice:0:5; let i=index">
+        <li class="list-group-item">
+          <div class="forecast-item">
+            <p class="date-time">{{ convertDate(item.dt) }}<br/>
+              {{ convertTime(item.dt) }}</p>
+              <i class="owi" [class]="owi-item.weather[0].icon" ></i><br/>
+              <p>{{item.weather[0].icon}}</p>
+              <p>Conditions: {{ item.weather[0].main }}<br/>
+                Expected: {{ item.main.temp }}°C<br/>
+                Humidity: {{ item.main.humidity }}%<br/>
+                Pressure: {{ round(item.main.pressure) }} kPa<br/>
+                Wind: {{ item.wind.speed }} m/s {{ windDirection(item.wind.deg) }}</p>
+              </div>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </div>
 </div>

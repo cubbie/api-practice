@@ -1,3 +1,22 @@
+.list-group-item {
+  margin: 15px 5px 0 5px;
+}
+.results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .date-time {
   text-align: center;
+}
+.forecast, .current{
+  text-align: center;
+}
+.forecast-title, .current-title {
+  margin-top: 15px
+}
+.hr {
+  border-left:1px solid lightgrey;
+  height:350px;
+  margin:15px;
 }

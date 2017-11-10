@@ -13,6 +13,7 @@ export class SearchComponent implements OnInit {
   position: any;
   lon: number;
   lat: number;
+  search: string = "Current Location";
 
   constructor(private weatherService: WeatherService,
               private locationService: LocationService) {}
@@ -31,23 +32,22 @@ export class SearchComponent implements OnInit {
       },
       (error: any) => console.log('error')
     );
-
   }
   getCity(city) {
     this.weatherService.getCityWeather(this.searchForm.value.city).subscribe(
       (weather: {}) => this.weatherService.weatherUpdated.emit(weather),
       (error) => console.error
     );
-    // this.weatherService.getCityForcast(this.searchForm.value.city).subscribe(
-    //   (response) => console.log(response),
-    //   (error) => console.error
-    // );
+    this.search = String(this.searchForm.value.city)
   }
   getLonLat(lon, lat) {
     this.weatherService.getWeatherLonLat(this.searchForm.value.lon, this.searchForm.value.lat).subscribe(
-      (response) => console.log(response),
+      (weather: {}) => console.log(weather),
       (error) => console.error
     );
+    this.lon = this.searchForm.value.lon;
+    this.lat = this.searchForm.value.lat;
+    this.search = String(this.searchForm.value.lon+", "+this.searchForm.value.lat)
   }
 
 }

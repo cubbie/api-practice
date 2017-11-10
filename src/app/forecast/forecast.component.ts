@@ -9,6 +9,7 @@ import { WeatherService } from '../weather.service';
 export class ForecastComponent implements OnInit {
 public hidden: boolean = false;
 public weather: {list: any};
+public city: {};
 
   constructor(private weatherService: WeatherService) {}
 
@@ -16,7 +17,13 @@ public weather: {list: any};
     this.weatherService.weatherUpdated.subscribe(
       (weather: {list: any}) => {
         this.weather = weather;
-        console.log(this.weather)
+      },
+      (error) => console.error
+    );
+    this.weatherService.cityUpdated.subscribe(
+      (city: {}) => {
+        this.city = city;
+        console.log(this.city)
       },
       (error) => console.error
     );
@@ -25,8 +32,8 @@ public weather: {list: any};
     return new Date(time*1000).toString().slice(0, 15);
   }
   convertTime(time){
-    let h = parseInt(new Date(time*1000).toString().slice(16, 18));
-    let m = parseInt(new Date(time*1000).toString().slice(19, 21))
+    const h = parseInt(new Date(time*1000).toString().slice(16, 18));
+    const m = parseInt(new Date(time*1000).toString().slice(19, 21))
     if (h > 12) {
       return (h - 12) + new Date(time*1000).toString().slice(18, 21)+ " PM"
     } else if (h < 10) {

@@ -1,13 +1,15 @@
 <app-header></app-header>
 <div class="container-fluid">
-  <div class="row">
-    <app-search class="col"></app-search>
-    <div class="col">
+  <div class="row top">
+    <app-search class="col-sm"></app-search>
+    <div class="col-sm">
       <agm-map [latitude]="lat" [longitude]="lng">
         <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-      </agm-map>  
+      </agm-map>
     </div>
   </div>
   <hr>
-  <app-forecast></app-forecast>
+  <div class="container-fluid">
+    <app-forecast></app-forecast>
+  </div>
 </div>

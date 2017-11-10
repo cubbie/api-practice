@@ -7,9 +7,20 @@ export class WeatherService {
   constructor(private http: Http) {}
 
   private apikey = "5e95e2c32b9ad691b2e7c02c21e76e84"
+  public city: {};
   public weather: {};
+  cityUpdated = new EventEmitter<{}>()
   weatherUpdated = new EventEmitter<{}>()
 
+  getStartCity(lat, lon) {
+    return this.http.get('https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&units=metric&APPID='+this.apikey)
+    .map(
+      (response: Response) => {
+        this.city = response.json();
+        return this.city;
+      }
+    );
+  }
   getStartWeather(lat, lon) {
     return this.http.get('https://api.openweathermap.org/data/2.5/forecast?lat='+lat+'&lon='+lon+'&units=metric&APPID='+this.apikey)
     .map(

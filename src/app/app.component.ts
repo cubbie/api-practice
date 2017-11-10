@@ -22,14 +22,17 @@ export class AppComponent implements OnInit {
     this.locationService.getLocation().subscribe(
       (position: {}) => {
         this.position = position;
-        // this.lon = this.position.coords.longitude;
-        // this.lat = this.position.coords.latitude;
-        console.log(this.position)
+        this.lon = this.position.coords.longitude;
+        this.lat = this.position.coords.latitude;
       },
       (error: any) => console.log('error')
     );
     this.weatherService.getStartWeather(this.lat, this.lon).subscribe(
       (weather: {}) => this.weatherService.weatherUpdated.emit(weather),
+      (error) => console.error
+    );
+    this.weatherService.getStartCity(this.lat, this.lon).subscribe(
+      (city: {}) => this.weatherService.cityUpdated.emit(city),
       (error) => console.error
     );
   }
