@@ -40,24 +40,13 @@
       </div>
     </div>
   </div>
-  <div class="row"
+  <div class="col"
     *ngIf="!hidden === false">
-    <table style="width:100%">
-      <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Age</th>
-      </tr>
-      <tr>
-        <td>Jill</td>
-        <td>Smith</td>
-        <td>50</td>
-      </tr>
-      <tr>
-        <td>Eve</td>
-        <td>Jackson</td>
-        <td>94</td>
-      </tr>
-    </table>
+    <ul class="list-group"
+    *ngFor="let item of weather.list; let i=index">
+      <li class="list-group-item">
+        
+      </li>
+    </ul>
   </div>
 </div>

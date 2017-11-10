@@ -7,7 +7,7 @@ import { WeatherService } from '../weather.service';
   styleUrls: ['./forecast.component.css'],
 })
 export class ForecastComponent implements OnInit {
-public hidden: boolean = false;
+public hidden: boolean = true;
 public weather: {list: any};
 public city: {};
 

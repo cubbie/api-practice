@@ -39,8 +39,8 @@ export class WeatherService {
       }
     );
   }
-  getWeatherLonLat(lat, lon) {
-    return this.http.get('http://api.openweathermap.org/data/2.5/find?lat=' + lat +'&lon='+ lon +'&cnt=50&units=metric&APPID='+this.apikey)
+  getWeatherLonLat(lon, lat) {
+    return this.http.get('http://api.openweathermap.org/data/2.5/find?lat='+lat+'&lon='+lon+'&cnt=50&APPID='+this.apikey)
     .map(
       (response: Response) => {
         this.weather = response.json();
