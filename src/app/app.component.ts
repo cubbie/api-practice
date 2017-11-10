@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { WeatherService } from './weather.service';
-import { LocationService } from './location.service'
-import { DisplayService } from './display.service';
+import { WeatherService } from './services/weather.service';
+import { LocationService } from './services/location.service'
+import { DisplayService } from './services/display.service';
 import { Http } from '@angular/http';
 
 @Component({

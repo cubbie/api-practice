@@ -4,9 +4,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { WeatherService } from './weather.service';
-import { LocationService } from './location.service'
-import { DisplayService } from './display.service';
+import { WeatherService } from './services/weather.service';
+import { LocationService } from './services/location.service'
+import { DisplayService } from './services/display.service';
 import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './search/search.component';
 import { ForecastComponent } from './forecast/forecast.component';

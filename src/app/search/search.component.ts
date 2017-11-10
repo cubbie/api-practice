@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { WeatherService } from '../weather.service';
-import { LocationService } from '../location.service'
+import { WeatherService } from '../services/weather.service';
+import { LocationService } from '../services/location.service'
 import { FormGroup, FormControl } from '@angular/forms';
-import { DisplayService } from '../display.service';
+import { DisplayService } from '../services/display.service';
 
 @Component({
   selector: 'app-search',
