@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../weather.service';
 import { LocationService } from '../location.service'
 import { FormGroup, FormControl } from '@angular/forms';
+import { DisplayService } from '../display.service';
 
 @Component({
   selector: 'app-search',
@@ -10,13 +11,15 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class SearchComponent implements OnInit {
   searchForm: FormGroup;
-  position: any;
-  lon: number;
-  lat: number;
-  search: string = "Current Location";
+  public position: any;
+  public lon: number;
+  public lat: number;
+  public search: string = "Current Location";
+  public visible: number;
 
   constructor(private weatherService: WeatherService,
-              private locationService: LocationService) {}
+              private locationService: LocationService,
+              private display: DisplayService) {}
 
   ngOnInit() {
     this.searchForm = new FormGroup({
@@ -32,10 +35,14 @@ export class SearchComponent implements OnInit {
       },
       (error: any) => console.log('error')
     );
+    this.display.currentDisplay.subscribe(display => this.visible = display)
   }
   getCity(city) {
     this.weatherService.getCityWeather(this.searchForm.value.city).subscribe(
-      (weather: {}) => this.weatherService.weatherUpdated.emit(weather),
+      (weather: {}) => {
+        this.weatherService.weatherUpdated.emit(weather),
+        this.display.changeDisplay(1)
+      },
       (error) => console.error
     );
     this.weatherService.getCityCurrent(this.searchForm.value.city).subscribe(
@@ -43,18 +50,20 @@ export class SearchComponent implements OnInit {
       (error) => console.error
     );
     this.search = String(this.searchForm.value.city)
+    this.display.changeDisplay(0)
   }
   getLonLat(lon, lat) {
     this.weatherService.getWeatherLonLat(this.searchForm.value.lon, this.searchForm.value.lat).subscribe(
       (weather: {}) => {
         this.weatherService.weatherUpdated.emit(weather),
-        console.log(weather)
+        this.display.changeDisplay(2)
       },
       (error) => console.error
     );
     this.lon = this.searchForm.value.lon;
     this.lat = this.searchForm.value.lat;
     this.search = String(this.searchForm.value.lon+", "+this.searchForm.value.lat)
+    this.display.changeDisplay(0)
   }
 
 }

@@ -1,9 +1,8 @@
 <div class="results">
-  <!-- <i *ngIf="weather.list === null" -->
-    <!-- class="fa fa-spinner fa-spin" style="font-size:24px"></i> -->
-    <!-- <div *ngIf="!weather.list === null"> -->
+  <i *ngIf="visible === 0"
+    class="fa fa-spinner fa-spin" style="font-size:60px;margin:20px"></i>
   <div class="row"
-    *ngIf="!hidden === true">
+    *ngIf="visible === 1">
     <div class="current">
       <h3 class="current-title">Current</h3>
       <ul class="list-group">
@@ -44,7 +43,7 @@
     </div>
   </div>
   <div class="col"
-    *ngIf="!hidden === false">
+    *ngIf="visible === 2">
     <table class="table results-table">
         <tr>
             <th>City</th>
@@ -63,6 +62,5 @@
           <td>{{round(item.main.pressure)}} kPa</td>
         </tr>
     </table>
-  <!-- </div> -->
   </div>
 </div>

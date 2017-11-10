@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../weather.service';
+import { DisplayService } from '../display.service';
 
 @Component({
   selector: 'app-forecast',
@@ -7,11 +8,12 @@ import { WeatherService } from '../weather.service';
   styleUrls: ['./forecast.component.css'],
 })
 export class ForecastComponent implements OnInit {
-public hidden: boolean = false;
+public visible: number;
 public weather: {list: any};
 public city: {};
 
-  constructor(private weatherService: WeatherService) {}
+  constructor(private weatherService: WeatherService,
+              private display: DisplayService) {}
 
   ngOnInit() {
     this.weatherService.weatherUpdated.subscribe(
@@ -23,10 +25,10 @@ public city: {};
     this.weatherService.cityUpdated.subscribe(
       (city: {}) => {
         this.city = city;
-        console.log(this.city)
       },
       (error) => console.error
     );
+    this.display.currentDisplay.subscribe(display => this.visible = display)
   }
   convertDate(time){
     return new Date(time*1000).toString().slice(0, 15);

@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { WeatherService } from './weather.service';
 import { LocationService } from './location.service'
+import { DisplayService } from './display.service';
 import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './search/search.component';
 import { ForecastComponent } from './forecast/forecast.component';
@@ -29,7 +30,8 @@ import { AgmCoreModule } from '@agm/core';
     })
   ],
   providers: [WeatherService,
-  LocationService],
+  LocationService,
+  DisplayService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
