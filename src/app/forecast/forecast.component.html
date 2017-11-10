@@ -1,4 +1,7 @@
 <div class="results">
+  <!-- <i *ngIf="weather.list === null" -->
+    <!-- class="fa fa-spinner fa-spin" style="font-size:24px"></i> -->
+    <!-- <div *ngIf="!weather.list === null"> -->
   <div class="row"
     *ngIf="!hidden === true">
     <div class="current">
@@ -42,11 +45,24 @@
   </div>
   <div class="col"
     *ngIf="!hidden === false">
-    <ul class="list-group"
-    *ngFor="let item of weather.list; let i=index">
-      <li class="list-group-item">
-        
-      </li>
-    </ul>
+    <table class="table results-table">
+        <tr>
+            <th>City</th>
+            <th>Temperature</th>
+            <th>Conditions</th>
+            <th>Wind</th>
+            <th>Humidity</th>
+            <th>Pressure</th>
+        </tr>
+        <tr *ngFor="let item of weather.list; let i=index">
+          <td>{{item.name}}</td>
+          <td>{{item.main.temp}}°C</td>
+          <td>{{item.weather[0].main}}</td>
+          <td>{{item.wind.speed}} m/s {{windDirection(item.wind.deg)}}</td>
+          <td>{{item.main.humidity}} %</td>
+          <td>{{round(item.main.pressure)}} kPa</td>
+        </tr>
+    </table>
+  <!-- </div> -->
   </div>
 </div>

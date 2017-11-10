@@ -38,11 +38,18 @@ export class SearchComponent implements OnInit {
       (weather: {}) => this.weatherService.weatherUpdated.emit(weather),
       (error) => console.error
     );
+    this.weatherService.getCityCurrent(this.searchForm.value.city).subscribe(
+      (city: {}) => this.weatherService.cityUpdated.emit(city),
+      (error) => console.error
+    );
     this.search = String(this.searchForm.value.city)
   }
   getLonLat(lon, lat) {
     this.weatherService.getWeatherLonLat(this.searchForm.value.lon, this.searchForm.value.lat).subscribe(
-      (weather: {}) => console.log(weather),
+      (weather: {}) => {
+        this.weatherService.weatherUpdated.emit(weather),
+        console.log(weather)
+      },
       (error) => console.error
     );
     this.lon = this.searchForm.value.lon;

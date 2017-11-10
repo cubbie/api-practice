@@ -12,8 +12,8 @@ import { Http } from '@angular/http';
 })
 export class AppComponent implements OnInit {
   position: any;
-  lon: number = 43.8047818;
-  lat: number = 79.8745539;
+  lon: number;
+  lat: number;
   title = 'Weather';
   constructor(private weatherService: WeatherService,
               private locationService: LocationService) {}
@@ -24,16 +24,22 @@ export class AppComponent implements OnInit {
         this.position = position;
         this.lon = this.position.coords.longitude;
         this.lat = this.position.coords.latitude;
+        this.weatherService.getStartWeather(this.lon, this.lat).subscribe(
+          (weather: {}) => {
+            this.weatherService.weatherUpdated.emit(weather),
+            console.log(weather)
+          },
+          (error) => console.error
+        );
+        this.weatherService.getStartCity(this.lon, this.lat).subscribe(
+          (city: {}) => {
+            this.weatherService.cityUpdated.emit(city),
+            console.log(city)
+          },
+          (error) => console.error
+        );
       },
       (error: any) => console.log('error')
-    );
-    this.weatherService.getStartWeather(this.lat, this.lon).subscribe(
-      (weather: {}) => this.weatherService.weatherUpdated.emit(weather),
-      (error) => console.error
-    );
-    this.weatherService.getStartCity(this.lat, this.lon).subscribe(
-      (city: {}) => this.weatherService.cityUpdated.emit(city),
-      (error) => console.error
     );
   }
 }
