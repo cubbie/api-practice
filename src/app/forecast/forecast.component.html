@@ -9,8 +9,7 @@
         <li class="list-group-item">
           <p class="date-time">{{ convertDate(city.dt) }}<br/>
             {{ convertTime(city.dt) }}</p>
-            <i class="owi" [class]="owi-city.weather[0].icon" ></i><br/>
-            <p>{{city.weather[0].icon}}</p>
+            <img src="assets/images/{{city.weather[0].icon}}.png"><br/>
             <p>Conditions: {{ city.weather[0].main }}<br/>
               Currently: {{ city.main.temp }}°C<br/>
               Humidity: {{ city.main.humidity }}%<br/>
@@ -29,8 +28,8 @@
           <div class="forecast-item">
             <p class="date-time">{{ convertDate(item.dt) }}<br/>
               {{ convertTime(item.dt) }}</p>
-              <i class="owi" [class]="owi-item.weather[0].icon" ></i><br/>
-              <p>{{item.weather[0].icon}}</p>
+              <img src="assets/images/{{item.weather[0].icon}}.png"><br/>
+              <!-- <p>{{item.weather[0].icon}}</p> -->
               <p>Conditions: {{ item.weather[0].main }}<br/>
                 Expected: {{ item.main.temp }}°C<br/>
                 Humidity: {{ item.main.humidity }}%<br/>

@@ -84,4 +84,7 @@ public city: {};
       return "NNW"
     }
   }
+  getImage(img){
+    
+  }
 }
