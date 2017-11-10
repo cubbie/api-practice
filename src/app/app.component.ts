@@ -12,10 +12,10 @@ import { Http } from '@angular/http';
   LocationService]
 })
 export class AppComponent implements OnInit {
-  position: any;
-  lon: number;
-  lat: number;
-  title = 'Weather';
+  public position: any;
+  public lon: number;
+  public lat: number;
+  public title = 'Weather';
   constructor(private weatherService: WeatherService,
               private locationService: LocationService,
               private display: DisplayService) {}
@@ -42,5 +42,7 @@ export class AppComponent implements OnInit {
       },
       (error: any) => console.log('error')
     );
+    this.locationService.currentLat.subscribe(lat => this.lat = lat)
+    this.locationService.currentLon.subscribe(lon => this.lon = lon)
   }
 }

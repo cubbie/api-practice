@@ -35,12 +35,17 @@ export class SearchComponent implements OnInit {
       },
       (error: any) => console.log('error')
     );
+    this.locationService.currentLat.subscribe(lat => this.lat = lat)
+    this.locationService.currentLon.subscribe(lon => this.lon = lon)
     this.display.currentDisplay.subscribe(display => this.visible = display)
   }
   getCity(city) {
     this.weatherService.getCityWeather(this.searchForm.value.city).subscribe(
-      (weather: {}) => {
+      (weather: {city: {coord: {lat: number, lon: number}}, list: any[]}) => {
         this.weatherService.weatherUpdated.emit(weather),
+        console.log(weather),
+        this.locationService.changeLat(weather.city.coord.lat);
+        this.locationService.changeLon(weather.city.coord.lon);
         this.display.changeDisplay(1)
       },
       (error) => console.error
@@ -60,10 +65,12 @@ export class SearchComponent implements OnInit {
       },
       (error) => console.error
     );
-    this.lon = this.searchForm.value.lon;
-    this.lat = this.searchForm.value.lat;
-    this.search = String(this.searchForm.value.lon+", "+this.searchForm.value.lat)
-    this.display.changeDisplay(0)
+    this.lon = parseInt(this.searchForm.value.lon);
+    this.lat = parseInt(this.searchForm.value.lat);
+    this.locationService.changeLat(this.lat);
+    this.locationService.changeLon(this.lon);
+    this.search = String(this.searchForm.value.lat+", "+this.searchForm.value.lon);
+    this.display.changeDisplay(0);
   }
 
 }

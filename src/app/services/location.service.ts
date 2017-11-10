@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 const GEOLOCATION_ERRORS = {
 	'errors.location.unsupportedBrowser': 'Browser does not support location services',
@@ -10,6 +11,17 @@ const GEOLOCATION_ERRORS = {
 
 @Injectable()
 export class LocationService {
+	private  latValue = new BehaviorSubject<number>(0)
+	private  lonValue = new BehaviorSubject<number>(0)
+	currentLat = this.latValue.asObservable()
+	currentLon = this.lonValue.asObservable()
+
+	changeLat(lat: number){
+		this.latValue.next(lat)
+	}
+	changeLon(lon: number){
+		this.lonValue.next(lon)
+	}
 	public getLocation(): Observable<any> {
 		return Observable.create(observer => {
 			if (window.navigator && window.navigator.geolocation) {
@@ -38,6 +50,8 @@ export class LocationService {
 			}
 		});
 	}
+
+
 }
 
 export var locationServiceInjectables: Array<any> = [
