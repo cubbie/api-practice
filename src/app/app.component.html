@@ -1,8 +1,8 @@
 <app-header></app-header>
 <div class="container-fluid">
-  <div class="row top">
-    <app-search class="col-sm"></app-search>
-    <div class="col-sm">
+  <div class="row top justify-content-center">
+    <app-search class="col-lg-5"></app-search>
+    <div class="col-lg-5">
       <agm-map [latitude]="lat" [longitude]="lon">
         <agm-marker [latitude]="lat" [longitude]="lon"></agm-marker>
       </agm-map>

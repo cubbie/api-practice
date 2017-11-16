@@ -62,4 +62,11 @@
         </tr>
     </table>
   </div>
+  <div class="search-error col-lg-9"
+    *ngIf="visible === 4">
+    <h1>The location you searched for could not be found.</h1>
+    <h3>
+      Please check the spelling or refine your search by adding a province/state. (ex. Toronto, Ontario)
+    </h3>
+  </div>
 </div>

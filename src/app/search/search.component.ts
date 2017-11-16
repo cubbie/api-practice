@@ -33,7 +33,7 @@ export class SearchComponent implements OnInit {
         this.lon = this.position.coords.longitude;
         this.lat = this.position.coords.latitude;
       },
-      (error: any) => console.log('error')
+      (error: any) => this.display.changeDisplay(4)
     );
     this.locationService.currentLat.subscribe(lat => this.lat = lat)
     this.locationService.currentLon.subscribe(lon => this.lon = lon)
@@ -43,16 +43,15 @@ export class SearchComponent implements OnInit {
     this.weatherService.getCityWeather(this.searchForm.value.city).subscribe(
       (weather: {city: {coord: {lat: number, lon: number}}, list: any[]}) => {
         this.weatherService.weatherUpdated.emit(weather),
-        console.log(weather),
         this.locationService.changeLat(weather.city.coord.lat);
         this.locationService.changeLon(weather.city.coord.lon);
         this.display.changeDisplay(1)
       },
-      (error) => console.error
+      (error) => this.display.changeDisplay(4)
     );
     this.weatherService.getCityCurrent(this.searchForm.value.city).subscribe(
       (city: {}) => this.weatherService.cityUpdated.emit(city),
-      (error) => console.error
+      (error) => this.display.changeDisplay(4)
     );
     this.search = String(this.searchForm.value.city)
     this.display.changeDisplay(0)
@@ -63,7 +62,7 @@ export class SearchComponent implements OnInit {
         this.weatherService.weatherUpdated.emit(weather),
         this.display.changeDisplay(2)
       },
-      (error) => console.error
+      (error) => this.display.changeDisplay(4)
     );
     this.lon = parseInt(this.searchForm.value.lon);
     this.lat = parseInt(this.searchForm.value.lat);
