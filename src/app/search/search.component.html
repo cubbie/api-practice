@@ -4,7 +4,8 @@
     <input type="text"
       class= "form-control col"
       placeholder="City"
-      formControlName="city">
+      formControlName="city"
+      (keyup.enter)="getCity()">
       <br />
     <button class="btn btn-primary"
       type="button"
@@ -16,12 +17,14 @@
     <input type="text"
     class= "form-control col"
     placeholder="Latitude"
-    formControlName="lat">
+    formControlName="lat"
+    (keyup.enter)="getLonLat()">
     <br />
     <input type="text"
     class= "form-control col"
     placeholder="Longitutde"
-    formControlName="lon">
+    formControlName="lon"
+    (keyup.enter)="getLonLat()">
     <br />
     <button class="btn btn-primary"
       type="button"
